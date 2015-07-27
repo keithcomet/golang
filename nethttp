@@ -1,0 +1,20 @@
+//working example of a simple web server:
+
+package main
+
+// Importing net/http Package for Webserver Process
+import ( 
+	"fmt"
+	"net/http"
+	)
+	
+func main(){
+	http.HandleFunc("/", server)
+	http.ListenAndServe(":8080", nil)
+}
+
+//Function that handles the Client / Server Process
+
+func server(w http.ResponseWriter, r *http.Request){
+	fmt.Fprintf(w, "Hi %s!", r.URL.Path[1:])
+}
