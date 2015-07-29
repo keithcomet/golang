@@ -1,0 +1,36 @@
+package main
+
+import (
+	"encoding/json"
+	"net/http"
+)
+
+type Employee struct{
+	Name string
+	Designation string
+}
+
+func main(){
+	http.HandleFunc("/", server)
+	http.ListenAndServe(":8080", nil)
+}
+
+func server(w http.ResponseWriter, r *http.Request){
+
+E := Employee{"Palio", "Farmer"}
+
+js, err := json.Marshal(E)
+  if err != nil {
+    http.Error(w, err.Error(), http.StatusInternalServerError)
+    return
+  }
+
+//	w.Header().Set("Content-Type", "application/json")
+	w.Write(js)
+
+}
+
+
+Output in JSON Format:
+
+{"Name":"Palio","Designation":"Farmer"}
