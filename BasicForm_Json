@@ -1,0 +1,69 @@
+//Getting Data From a Form And Printing it in JSON Format
+
+// BasicForm.go File
+package main
+
+import (
+	"fmt"
+	"net/http"
+	"encoding/json"
+	"html/template"
+)
+
+type Employee struct{
+	Name string
+	Designation string
+}
+
+func main(){
+	http.HandleFunc("/login", login)
+	http.ListenAndServe(":8080", nil)
+	
+	// Initially i have put as /login/, it was taken as GET, But for Processint the input in Go it must be POST so
+	// i put as /login
+}
+
+func login(w http.ResponseWriter, r *http.Request) {
+
+	fmt.Println("method:", r.Method)
+	if r.Method == "GET" {
+		t, _ := template.ParseFiles("form.html")
+        t.Execute(w, nil)
+	}else{
+	 
+		//r.ParseForm() // If we use r.Form we have to use this, FormValue by default uses this ParseForm automatically
+		//r.Form Syntax r.Form["name"]
+        // logic part of log in
+		
+		username := r.FormValue("name")
+		designation := r.FormValue("desi")
+		
+        fmt.Println("username:", username)
+        fmt.Println("designation:", designation)
+		
+		E := Employee{username, designation}
+
+		json, _ := json.Marshal(E)
+
+		w.Header().Set("Content-Type", "application/json")
+		w.Write(json)
+	 
+	 }
+}
+
+
+//LoginForm.html File
+<head>
+<title>Login Page</title>
+</head>
+<body>
+<form action="/login" method="post">
+
+    Username:<input type="text" name="name">
+    Designation:<input type="text" name="desi">
+    <input type="submit" value="Login">	
+
+</form>
+</body>
+</html>
+
