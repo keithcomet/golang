@@ -19,7 +19,7 @@ func main(){
 	http.HandleFunc("/login", login)
 	http.ListenAndServe(":8080", nil)
 	
-	// Initially i have put as /login/, it was taken as GET, But for Processint the input in Go it must be POST so
+	// Initially i have put as /login/, it was taken as GET, But for Processing the input in Go it must be POST so
 	// i put as /login
 }
 
@@ -67,3 +67,9 @@ func login(w http.ResponseWriter, r *http.Request) {
 </body>
 </html>
 
+// Sample Output
+
+{
+Name: "Keith"
+Designation: "System Engineer"
+}
