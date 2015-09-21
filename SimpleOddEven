@@ -1,0 +1,22 @@
+package main
+
+import "fmt"
+
+var (
+
+	a int
+)
+func main(){
+	
+	fmt.Println("Enter the N.O to check");
+	fmt.Scanf("%d", &a);
+//	fmt.Printf("The num is %d", a);
+	
+	if(a%2 == 0){
+		fmt.Println("Even Num");
+		
+	}else{
+		fmt.Println("Odd Num");
+	}
+
+}
