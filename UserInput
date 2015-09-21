@@ -1,0 +1,20 @@
+package main
+
+import "fmt"
+
+
+var (
+
+	name string
+	id int
+)
+func main(){
+
+	fmt.Println("Enter your name and Id")
+//	fmt.Scanln(&name, &id);
+	fmt.Scanf("%s %d", &name, &id);
+	fmt.Printf("Hi %s your ID is = %d", name, id);
+	
+}
+
+Output: Hi keith your ID is = 45
