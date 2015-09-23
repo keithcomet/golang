@@ -61,7 +61,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 
     Username:<input type="text" name="name">
     Designation:<input type="text" name="desi">
-    <input type="submit" value="Login">	
+    Submit: <input type="submit" value="Login">	
 
 </form>
 </body>
